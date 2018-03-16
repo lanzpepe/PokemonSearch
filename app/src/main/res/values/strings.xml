@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Pokemon Search</string>
+    <string name="text_pokemon_input">Enter Pokemon name:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_attributes">Attributes:</string>
+    <string name="text_weight">Weight:</string>
+    <string name="text_height">Height:</string>
+    <string name="text_abilities">Abilities:</string>
+    <string name="text_types">Types:</string>
+    <string name="text_number">#</string>
+    <string name="text_bullet">&#8226;</string>
+    <string name="text_stats">Stats:</string>
+    <string name="text_speed">Speed:</string>
+    <string name="text_special_defense">Special Defense:</string>
+    <string name="text_defense">Defense:</string>
+    <string name="text_attack">Attack:</string>
+    <string name="text_hp">Hp:</string>
+    <string name="text_special_attack">Special Attack:</string>
+</resources>
