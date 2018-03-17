@@ -16,6 +16,7 @@
     <string name="text_special_defense">Special Defense:</string>
     <string name="text_defense">Defense:</string>
     <string name="text_attack">Attack:</string>
-    <string name="text_hp">Hp:</string>
+    <string name="text_hp">HP:</string>
     <string name="text_special_attack">Special Attack:</string>
+    <string name="text_close">X</string>
 </resources>

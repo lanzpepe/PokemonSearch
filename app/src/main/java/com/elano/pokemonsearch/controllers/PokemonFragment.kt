@@ -10,6 +10,7 @@ import com.elano.pokemonsearch.models.Pokemon
 import com.squareup.picasso.Picasso
 import org.apache.commons.lang3.StringUtils
 import kotlinx.android.synthetic.main.fragment_pokemon.view.*
+import java.util.*
 
 class PokemonFragment : Fragment() {
 
@@ -30,20 +31,14 @@ class PokemonFragment : Fragment() {
         Picasso.with(context).load(pokemon!!.sprites.frontDefault).into(view!!.ivPokemon)
         view.tvPokemonName?.append(" ${StringUtils.capitalize(pokemon.name)}")
         view.tvPokemonId?.append(" ${pokemon.id}")
-        view.tvPokemonWeight?.append(" ${pokemon.weight} kg")
-        view.tvPokemonHeight?.append(" ${pokemon.height} m")
+        view.tvPokemonWeight?.append(" %.1f kg".format(Locale.US, pokemon.weight.toDouble() / 10))
+        view.tvPokemonHeight?.append(" %.2f m".format(Locale.US, pokemon.height.toDouble() / 10))
         for (i in 0 until pokemon.abilities.size) {
-            separatorA = if (i < pokemon.abilities.size - 1)
-                getString(R.string.text_bullet)
-            else
-                ""
+            separatorA = if (i < pokemon.abilities.size - 1) getString(R.string.text_bullet) else ""
             view.tvPokemonAbilities?.append(" ${StringUtils.capitalize(pokemon.abilities[i].ability.name)} $separatorA")
         }
         for (i in 0 until pokemon.types.size) {
-            separatorT = if (i < pokemon.types.size - 1)
-                getString(R.string.text_bullet)
-            else
-                ""
+            separatorT = if (i < pokemon.types.size - 1) getString(R.string.text_bullet) else ""
             view.tvPokemonTypes?.append(" ${StringUtils.capitalize(pokemon.types[i].type.name)} $separatorT")
         }
         for (i in 0 until pokemon.stats.size) {
@@ -56,6 +51,14 @@ class PokemonFragment : Fragment() {
                 5 -> view.tvPokemonHp.append(" ${pokemon.stats[i].baseStat}")
             }
         }
+        view.btnClose.setOnClickListener {
+            activity.onBackPressed()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as MainActivity).clearBackStackInclusive(MainActivity.TAG)
     }
 
 }// Required empty public constructor

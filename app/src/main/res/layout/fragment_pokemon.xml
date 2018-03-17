@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,17 +10,17 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
+        android:background="?android:attr/colorBackground"
         android:clickable="true"
         android:focusable="true">
 
         <ImageView
             android:id="@+id/ivPokemon"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,29 +71,28 @@
 
         <TextView
             android:id="@+id/tvPokemonWeight"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_weight"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPokemonAttr" />
 
         <TextView
             android:id="@+id/tvPokemonHeight"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_height"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonWeight" />
+            app:layout_constraintStart_toEndOf="@+id/tvPokemonWeight"
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonAttr" />
 
         <TextView
             android:id="@+id/tvPokemonAbilities"
@@ -102,7 +102,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_abilities"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPokemonHeight" />
@@ -115,7 +115,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_types"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPokemonAbilities" />
@@ -139,14 +139,16 @@
             android:id="@+id/tvPokemonSpeed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_speed"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonStats" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonSpecialDefense" />
 
         <TextView
             android:id="@+id/tvPokemonSpecialDefense"
@@ -156,10 +158,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_special_defense"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonSpeed" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonSpecialAttack" />
 
         <TextView
             android:id="@+id/tvPokemonSpecialAttack"
@@ -169,10 +171,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_special_attack"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonSpecialDefense" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonDefense" />
 
         <TextView
             android:id="@+id/tvPokemonDefense"
@@ -182,10 +184,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_defense"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonSpecialAttack" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonAttack" />
 
         <TextView
             android:id="@+id/tvPokemonAttack"
@@ -195,10 +197,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_attack"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonDefense" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonHp" />
 
         <TextView
             android:id="@+id/tvPokemonHp"
@@ -208,10 +210,21 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/text_hp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPokemonAttack" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonStats" />
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

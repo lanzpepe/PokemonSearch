@@ -1,12 +1,16 @@
 package com.elano.pokemonsearch.controllers
 
 import android.annotation.SuppressLint
+import android.app.FragmentManager
+import android.content.Context
+import android.graphics.Rect
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
-import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.elano.pokemonsearch.R
 import com.elano.pokemonsearch.adapters.PokemonAdapter
@@ -66,6 +70,13 @@ class MainActivity : AppCompatActivity(), Callback, RecyclerItemClickListener.Cl
         }
     }
 
+    override fun onFailure(call: Call?, e: IOException?) {
+        runOnUiThread {
+            toast("Failed to fetch Pokemon data!")
+            progressBar.visibility = View.GONE
+        }
+    }
+
     override fun onItemClick(view: View?, position: Int) {
         val pokemonFragment = PokemonFragment()
         val bundle = Bundle(); val pokemonPosition = mPokemons!![position]
@@ -74,26 +85,41 @@ class MainActivity : AppCompatActivity(), Callback, RecyclerItemClickListener.Cl
         pokemonFragment.arguments = bundle
         supportFragmentManager.beginTransaction().replace(R.id.fragment, pokemonFragment).addToBackStack(TAG).commit()
         fragment.visibility = View.VISIBLE
+        ibSearch.isEnabled = false
     }
 
-    @SuppressLint("PrivateResource")
-    override fun onBackPressed() {
-        if (fragmentManager.backStackEntryCount > 0)
-            fragmentManager.popBackStack()
-        else
-            super.onBackPressed()
-    }
-
-    override fun onFailure(call: Call?, e: IOException?) {
-        Log.v(TAG, "Failed to fetch Pokemon data!")
+    fun clearBackStackInclusive(tag: String?) {
+        supportFragmentManager.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        ibSearch.isEnabled = true
     }
 
     private fun toast(text: String?) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (ev?.action == MotionEvent.ACTION_DOWN) {
+            val view = currentFocus
+            if (etPokemonName.isFocused) {
+                val outRect = Rect()
+                etPokemonName.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+                    etPokemonName.clearFocus()
+                    hideKeyboard(view)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private fun hideKeyboard(view: View?) {
+        val inputMethodManager = view?.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
     companion object {
-        const val TAG = "MainActivity"
+        const val TAG = "PokemonFragment"
         const val POKEMON = "key-pokemon"
     }
 }

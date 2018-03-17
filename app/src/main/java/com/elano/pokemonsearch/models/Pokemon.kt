@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Pokemon(val id: Int, val name: String, val weight: Int, val sprites: Sprites, val height: Int,
-                   val abilities: ArrayList<Abilities>, val stats: ArrayList<Stats>, val types: ArrayList<Types>) : Serializable
+                   val abilities: ArrayList<Abilities>, val stats: ArrayList<Stat>, val types: ArrayList<Types>) : Serializable
 
 data class Abilities(val ability: Ability)
 
@@ -16,4 +16,4 @@ data class Sprites(@SerializedName("front_default") val frontDefault: String)
 
 data class Type(@SerializedName("name") val name: String)
 
-data class Stats(@SerializedName("base_stat") val baseStat: Int)
+data class Stat(@SerializedName("base_stat") val baseStat: Int)
